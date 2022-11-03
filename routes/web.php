@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Catalog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +22,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
+/*
 Route::get('/catalog', function () {
     return view('catalog');
+}); */
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
-Route::get('/catalog-detail', function () {
-    return view('catalog_detail');
-});
+Route::get('/catalog', [CatalogController::class, 'index']);
+Route::get('/catalog/{id}', [CatalogController::class, 'show']);

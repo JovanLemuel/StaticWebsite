@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Catalog extends Model
+{
+    use HasFactory;
+
+    private static $listCatalog = [
+        [
+            'id' => 1,
+            'namaKayu' => 'Bangkirai',
+            'deskripsi' => 'Kayu Bangkirai',
+            'fotoKayu' => '/images/Bangkirai.jpg',
+        ],
+        [
+            'id' => 2,
+            'namaKayu' => 'Kempas',
+            'deskripsi' => 'Kayu Kempas',
+            'fotoKayu' => '/images/Kempas.jpg',
+        ],
+        [
+            'id' => 3,
+            'namaKayu' => 'Meranti Merah',
+            'deskripsi' => 'Kayu Meranti Merah',
+            'fotoKayu' => '/images/Meranti Merah.jpg',
+        ]
+    ];
+
+    public static function index()
+    {
+        return collect(self::$listCatalog);
+    }
+
+    public static function showCatalog($id)
+    {
+        $allData = static::index();
+        return $allData->firstWhere('id', $id);
+    }
+}
